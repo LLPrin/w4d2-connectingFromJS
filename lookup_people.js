@@ -11,18 +11,19 @@ const client = new pg.Client({
 });
 
 client.connect((err) => {
-  let input = process.argv.slice(2);
-  console.log('input= ', input);
-  debugger;
+  let input = process.argv[2];
   if (err) {
     return console.error("Connection Error", err);
   }
-  client.query("SELECT name FROM people WHERE name LIKE '%`${input}`%'" , (err, result) => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>RESULT= ', result);
+  console.log('Searching...')
+  let sql = `SELECT id, name, born FROM people WHERE name LIKE '%${input}%'`
+  client.query(sql , (err, result) => {
+
     debugger;
     if (err) {
       return console.error("error running query", err);
     }
+    console.log(result.rows[0].id, result.rows[0].name, result.rows[0].born);
     client.end();
   });
 });
