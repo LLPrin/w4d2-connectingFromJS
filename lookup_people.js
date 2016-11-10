@@ -18,8 +18,6 @@ client.connect((err) => {
   console.log('Searching...')
   let sql = `SELECT id, name, born FROM people WHERE name LIKE '%${input}%'`
   client.query(sql , (err, result) => {
-
-    debugger;
     if (err) {
       return console.error("error running query", err);
     }

@@ -1,2 +1,4 @@
 settings.json
 .DS_Store
+knexfile.js
+node_modules
